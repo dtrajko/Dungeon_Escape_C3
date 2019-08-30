@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Horizontal input for left / right
-        float horizontalInput = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-        _rigid.velocity = new Vector2(horizontalInput, _rigid.velocity.y);
+        float move = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+        _rigid.velocity = new Vector2(move, _rigid.velocity.y);
     }
 }
