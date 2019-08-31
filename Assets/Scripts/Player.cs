@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
         Flip(move);
 
-        if ((Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("B_Button")) && IsGrounded()) {
+        if ((CrossPlatformInputManager.GetButtonDown("B_Button") || Input.GetKeyDown(KeyCode.Space)) && IsGrounded()) {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
             StartCoroutine(ResetJumpNeededCoroutine());
         }
