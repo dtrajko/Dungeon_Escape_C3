@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
 
     private Rigidbody2D _rigid;
-    private bool resetJumpNeeded = false;
+    private bool _resetJump = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,40 +25,33 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
-        CheckGrounded();
     }
 
     void Movement() {
         // Horizontal input for left / right
         float move = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+        _rigid.velocity = new Vector2(move * _moveSpeed, _rigid.velocity.y);
 
-        if (CrossPlatformInputManager.GetButtonDown("Jump") && _grounded)
-        {
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
-            _grounded = false;
-            resetJumpNeeded = true;
             StartCoroutine(ResetJumpNeededCoroutine());
         }
-
-        _rigid.velocity = new Vector2(move * _moveSpeed, _rigid.velocity.y);
     }
 
-    void CheckGrounded() {
-        // 2D raycast to the ground
+    bool IsGrounded() {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, _groundLayer.value);
-        Debug.DrawRay(transform.position, Vector2.down, Color.green);
-
-        if (hitInfo.collider != null)
-        {
-            if (resetJumpNeeded == false)
-            {
-                _grounded = true;
+        if (hitInfo.collider != null) {
+            if (_resetJump == false) {
+                return true;
             }
         }
+        return false;
     }
 
-    IEnumerator ResetJumpNeededCoroutine() {
+    IEnumerator ResetJumpNeededCoroutine()
+    {
+        _resetJump = true;
         yield return new WaitForSeconds(0.1f);
-        resetJumpNeeded = false;
+        _resetJump = false;
     }
 }
