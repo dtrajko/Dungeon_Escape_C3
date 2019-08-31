@@ -7,9 +7,9 @@ public class Player : MonoBehaviour
 {
     // Get reference to Rigidbody
     [SerializeField] private float _jumpForce = 5.0f;
-    [SerializeField] private float _moveSpeed = 2.0f;
     [SerializeField] private bool _grounded = false;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private float _speed = 2.5f;
 
     private Rigidbody2D _rigid;
     private bool _resetJump = false;
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     void Movement() {
         // Horizontal input for left / right
         float move = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-        _rigid.velocity = new Vector2(move * _moveSpeed, _rigid.velocity.y);
+        _rigid.velocity = new Vector2(move * _speed, _rigid.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
