@@ -29,6 +29,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
+
+        if (CrossPlatformInputManager.GetButtonDown("A_Button") && IsGrounded()) {
+            _playerAnimation.Attack();
+        }
     }
 
     void Movement() {
@@ -37,7 +41,7 @@ public class Player : MonoBehaviour
 
         Flip(move);
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) {
+        if ((Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("B_Button")) && IsGrounded()) {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
             StartCoroutine(ResetJumpNeededCoroutine());
         }

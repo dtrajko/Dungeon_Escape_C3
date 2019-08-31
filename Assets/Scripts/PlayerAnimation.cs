@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,13 +16,21 @@ public class PlayerAnimation : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Move(float move) {
         _animator.SetFloat("Move", Mathf.Abs(move));
+    }
+
+    public void Jump(bool jumping) {
+        _animator.SetBool("Jumping", jumping);
+    }
+
+    public void Attack()
+    {
+        _animator.SetTrigger("Attack");
+        // _swordAnimation.SetTrigger("SwordAnimation);
+    }
+
+    public void Death() {
+        _animator.SetTrigger("Death");
     }
 }
