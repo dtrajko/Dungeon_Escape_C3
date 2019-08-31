@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         // Assign handle of Rigidbody
         _rigid = GetComponent<Rigidbody2D>();
         _playerAnimation = GetComponent<PlayerAnimation>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
