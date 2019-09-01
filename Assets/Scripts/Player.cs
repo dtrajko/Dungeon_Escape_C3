@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     {
         Movement();
 
-        if (CrossPlatformInputManager.GetButtonDown("A_Button") && IsGrounded()) {
+        if (CrossPlatformInputManager.GetButtonDown("Fire1") && IsGrounded()) {
             _playerAnimation.Attack();
         }
     }
@@ -41,9 +41,10 @@ public class Player : MonoBehaviour
 
         Flip(move);
 
-        if ((CrossPlatformInputManager.GetButtonDown("B_Button") || Input.GetKeyDown(KeyCode.Space)) && IsGrounded()) {
+        if (IsGrounded() && (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))) {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
-            StartCoroutine(ResetJumpNeededCoroutine());
+            StartCoroutine(ResetJumpCoroutine());
+            _playerAnimation.Jump(true);
         }
 
         _rigid.velocity = new Vector2(move * _speed, _rigid.velocity.y);
@@ -54,13 +55,14 @@ public class Player : MonoBehaviour
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, 0.8f, _groundLayer.value);
         if (hitInfo.collider != null) {
             if (_resetJump == false) {
+                _playerAnimation.Jump(false);
                 return true;
             }
         }
         return false;
     }
 
-    IEnumerator ResetJumpNeededCoroutine()
+    IEnumerator ResetJumpCoroutine()
     {
         _resetJump = true;
         yield return new WaitForSeconds(0.1f);
