@@ -14,7 +14,10 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigid;
     private bool _resetJump = false;
     private PlayerAnimation _playerAnimation;
-    private SpriteRenderer _spriteRenderer;
+    private SpriteRenderer _playerSpriteRenderer;
+    private SpriteRenderer _swordArcSpriteRenderer;
+    private float _swordArcPositionX;
+    private float _swordArcRotationX;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +25,10 @@ public class Player : MonoBehaviour
         // Assign handle of Rigidbody
         _rigid = GetComponent<Rigidbody2D>();
         _playerAnimation = GetComponent<PlayerAnimation>();
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _playerSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _swordArcSpriteRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        _swordArcPositionX = _swordArcSpriteRenderer.transform.localPosition.x;
+        _swordArcRotationX = _swordArcSpriteRenderer.transform.localRotation.eulerAngles.x;
     }
 
     // Update is called once per frame
@@ -72,11 +78,35 @@ public class Player : MonoBehaviour
     void Flip(float move) {
         if (move > 0)
         {
-            _spriteRenderer.flipX = false;
+            _playerSpriteRenderer.flipX = false;
+            // _swordArcSpriteRenderer.flipX = false;
+            _swordArcSpriteRenderer.flipY = false;
+            _swordArcSpriteRenderer.transform.localPosition = new Vector3(
+                _swordArcPositionX,
+                _swordArcSpriteRenderer.transform.localPosition.y,
+                _swordArcSpriteRenderer.transform.localPosition.z
+            );
+            _swordArcSpriteRenderer.transform.localRotation = Quaternion.Euler(
+                _swordArcRotationX,
+                _swordArcSpriteRenderer.transform.localRotation.eulerAngles.y,
+                _swordArcSpriteRenderer.transform.localRotation.eulerAngles.z
+            );
         }
         else if (move < 0)
         {
-            _spriteRenderer.flipX = true;
+            _playerSpriteRenderer.flipX = true;
+            // _swordArcSpriteRenderer.flipX = true;
+            _swordArcSpriteRenderer.flipY = true;
+            _swordArcSpriteRenderer.transform.localPosition = new Vector3(
+                -_swordArcPositionX,
+                _swordArcSpriteRenderer.transform.localPosition.y,
+                _swordArcSpriteRenderer.transform.localPosition.z
+            );
+            _swordArcSpriteRenderer.transform.localRotation = Quaternion.Euler(
+                -_swordArcRotationX,
+                _swordArcSpriteRenderer.transform.localRotation.eulerAngles.y,
+                _swordArcSpriteRenderer.transform.localRotation.eulerAngles.z
+            );
         }
     }
 }
