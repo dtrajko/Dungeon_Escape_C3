@@ -7,11 +7,14 @@ public class Spider : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        Attack();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Attack()
+    {
+
+    }
+
+    public override void Update()
     {
 
     }
