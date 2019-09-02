@@ -9,11 +9,6 @@ public class MossGiant : Enemy
     {
     }
 
-    public override void Attack()
-    {
-
-    }
-
     public override void Update()
     {
 
