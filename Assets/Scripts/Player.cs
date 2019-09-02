@@ -6,7 +6,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour
 {
     // Get reference to Rigidbody
-    [SerializeField] private float _jumpForce = 7.0f;
+    [SerializeField] private float _jumpForce = 6.2f;
     [SerializeField] private bool _grounded = false;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _speed = 2.5f;
