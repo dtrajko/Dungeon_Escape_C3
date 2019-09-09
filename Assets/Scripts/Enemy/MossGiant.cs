@@ -21,22 +21,25 @@ public class MossGiant : Enemy
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
             return;
         }
+
         Movement();
     }
 
     void Movement() {
+        Flip(_switch);
         if (transform.position == pointA.position)
         {
             _switch = false;
             _currentTarget = pointB.position;
+            _animator.SetTrigger("Idle");
         }
         else if (transform.position == pointB.position)
         {
             _switch = true;
             _currentTarget = pointA.position;
+            _animator.SetTrigger("Idle");
         }
 
-        Flip(_switch);
         transform.position = Vector3.MoveTowards(transform.position, _currentTarget, speed * Time.deltaTime);
     }
 

@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
 
     bool IsGrounded() {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, 0.8f, _groundLayer.value);
+        // Debug.DrawRay(transform.position, Vector3.down, Color.green, 0.8f);
         if (hitInfo.collider != null) {
             if (_resetJump == false) {
                 _playerAnimation.Jump(false);
