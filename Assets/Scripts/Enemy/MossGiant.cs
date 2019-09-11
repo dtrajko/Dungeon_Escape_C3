@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MossGiant : Enemy
+public class MossGiant : Enemy, IDamageable
 {
     public override void Init()
     {
@@ -12,5 +12,12 @@ public class MossGiant : Enemy
     public override void Movement()
     {
         base.Movement();
+    }
+
+    int IDamageable.Health { get => health; set => health = value; }
+
+    void IDamageable.Damage()
+    {
+        Debug.Log(GetType().Name + " damaged.");
     }
 }
