@@ -18,6 +18,11 @@ public class Skeleton : Enemy, IDamageable
 
     void IDamageable.Damage()
     {
-        Debug.Log(GetType().Name + " damaged.");
+        health--;
+        animator.SetTrigger("Hit");
+        Debug.Log(GetType().Name + " damaged. Health: " + health);
+        if (health < 1) {
+            Destroy(gameObject, 1.0f);
+        }
     }
 }
