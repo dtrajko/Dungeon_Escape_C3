@@ -14,6 +14,7 @@ public abstract class Enemy : MonoBehaviour
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
     protected bool bSwitch;
+    protected bool isHit = false;
 
     private void Start() {
         Init();
@@ -34,6 +35,7 @@ public abstract class Enemy : MonoBehaviour
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
+            isHit = false;
             return;
         }
 
@@ -52,6 +54,8 @@ public abstract class Enemy : MonoBehaviour
             animator.SetTrigger("Idle");
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+        if (isHit == false) {
+            transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+        }
     }
 }

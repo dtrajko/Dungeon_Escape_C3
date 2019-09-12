@@ -20,6 +20,7 @@ public class Skeleton : Enemy, IDamageable
     {
         health--;
         animator.SetTrigger("Hit");
+        isHit = true;
         // Debug.Log(GetType().Name + " damaged. Health: " + health);
         if (health < 1) {
             Destroy(gameObject, 1.0f);
