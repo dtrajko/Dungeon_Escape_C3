@@ -16,6 +16,8 @@ public abstract class Enemy : MonoBehaviour
     protected bool bSwitch;
     protected bool isHit = false;
 
+    protected Player player;
+
     private void Start() {
         Init();
     }
@@ -29,13 +31,14 @@ public abstract class Enemy : MonoBehaviour
         currentTarget = pointB.position;
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     public virtual void Movement() {
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && animator.GetBool("InCombat") == false)
         {
-            isHit = false;
+            // isHit = false;
             return;
         }
 
@@ -56,6 +59,12 @@ public abstract class Enemy : MonoBehaviour
 
         if (isHit == false) {
             transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+        }
+
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+        if (distance > 2.0f) {
+            isHit = false;
+            animator.SetBool("InCombat", false);
         }
     }
 }
