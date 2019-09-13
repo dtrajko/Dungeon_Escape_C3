@@ -62,9 +62,28 @@ public abstract class Enemy : MonoBehaviour
         }
 
         float distance = Vector3.Distance(transform.position, player.transform.position);
+
         if (distance > 2.0f) {
             isHit = false;
             animator.SetBool("InCombat", false);
         }
+
+        Vector3 direction = player.transform.position - transform.position;
+
+        if (animator.GetBool("InCombat"))
+        {
+            if (direction.x > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (direction.x < 0) {
+                spriteRenderer.flipX = true;
+            }
+
+            // if (transform.name == "Skeleton_Enemy") {
+            //     Debug.Log(transform.name + " Orientation: " + (direction.x > 0 ? "Right" : "Left"));
+            // }
+        }
+
     }
 }
