@@ -14,10 +14,21 @@ public class Spider : Enemy, IDamageable
         base.Movement();
     }
 
-    int IDamageable.Health { get => health; set => health = value; }
+    public int Health { get => health; set => health = value; }
 
-    void IDamageable.Damage()
+    public void Damage()
     {
-        Debug.Log(GetType().Name + " damaged.");
+        Health--;
+
+        Debug.Log(GetType().Name + " damaged. Health: " + Health);
+
+        animator.SetTrigger("Hit");
+        isHit = true;
+        animator.SetBool("InCombat", true);
+
+        if (Health < 1)
+        {
+            Destroy(gameObject, 1.0f);
+        }
     }
 }

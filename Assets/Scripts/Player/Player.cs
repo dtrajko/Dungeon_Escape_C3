@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     // Get reference to Rigidbody
     [SerializeField] private float _jumpForce = 6.5f;
     [SerializeField] private bool _grounded = false;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _speed = 2.5f;
+    [SerializeField] protected int health = 100;
 
     private Rigidbody2D _rigid;
     private bool _resetJump = false;
@@ -18,6 +19,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer _swordArcSpriteRenderer;
     private float _swordArcPositionX;
     private float _swordArcRotationX;
+
+    public int Health { get => health; set => health = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -108,6 +111,21 @@ public class Player : MonoBehaviour
                 _swordArcSpriteRenderer.transform.localRotation.eulerAngles.y,
                 _swordArcSpriteRenderer.transform.localRotation.eulerAngles.z
             );
+        }
+    }
+
+    public void Damage()
+    {
+        Health--;
+
+        Debug.Log("Player Damage() called. Health: " + Health);
+
+        // _playerAnimation.SetTrigger("Hit");
+        // isHit = true;
+        // _playerAnimation.SetBool("InCombat", true);
+        if (Health < 1)
+        {
+            // Destroy(gameObject, 1.0f);
         }
     }
 }

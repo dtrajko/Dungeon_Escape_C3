@@ -38,7 +38,6 @@ public abstract class Enemy : MonoBehaviour
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && animator.GetBool("InCombat") == false)
         {
-            // isHit = false;
             return;
         }
 
@@ -79,10 +78,6 @@ public abstract class Enemy : MonoBehaviour
             else if (direction.x < 0) {
                 spriteRenderer.flipX = true;
             }
-
-            // if (transform.name == "Skeleton_Enemy") {
-            //     Debug.Log(transform.name + " Orientation: " + (direction.x > 0 ? "Right" : "Left"));
-            // }
         }
 
     }
