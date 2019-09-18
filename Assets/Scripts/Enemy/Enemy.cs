@@ -93,7 +93,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
         if (Health < 1)
         {
-            Destroy(gameObject, 1.0f);
+            animator.SetTrigger("Death");
+            Destroy(gameObject, 5.0f);
         }
     }
 }

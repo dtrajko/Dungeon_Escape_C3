@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spider : Enemy
+public class Spider : Enemy, IDamageable
 {
     public override void Init()
     {
