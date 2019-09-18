@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] protected int health;
     [SerializeField] protected float speed;
     [SerializeField] protected int gems;
-
     [SerializeField] protected Transform pointA, pointB;
 
     protected Vector3 currentTarget;
@@ -15,8 +14,9 @@ public abstract class Enemy : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected bool bSwitch;
     protected bool isHit = false;
-
     protected Player player;
+
+    public int Health { get => health; set => health = value; }
 
     private void Start() {
         Init();
@@ -79,6 +79,21 @@ public abstract class Enemy : MonoBehaviour
                 spriteRenderer.flipX = true;
             }
         }
+    }
 
+    public void Damage()
+    {
+        Health--;
+
+        Debug.Log(GetType().Name + " damaged. Health: " + Health);
+
+        animator.SetTrigger("Hit");
+        isHit = true;
+        animator.SetBool("InCombat", true);
+
+        if (Health < 1)
+        {
+            Destroy(gameObject, 1.0f);
+        }
     }
 }

@@ -20,6 +20,9 @@ public class Player : MonoBehaviour, IDamageable
     private float _swordArcPositionX;
     private float _swordArcRotationX;
 
+    protected Animator animator;
+    protected bool isHit = false;
+
     public int Health { get => health; set => health = value; }
 
     // Start is called before the first frame update
@@ -28,6 +31,7 @@ public class Player : MonoBehaviour, IDamageable
         // Assign handle of Rigidbody
         _rigid = GetComponent<Rigidbody2D>();
         _playerAnimation = GetComponent<PlayerAnimation>();
+        animator = GetComponentInChildren<Animator>();
         _playerSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _swordArcSpriteRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
         _swordArcPositionX = _swordArcSpriteRenderer.transform.localPosition.x;
@@ -120,12 +124,12 @@ public class Player : MonoBehaviour, IDamageable
 
         Debug.Log("Player Damage() called. Health: " + Health);
 
-        // _playerAnimation.SetTrigger("Hit");
-        // isHit = true;
-        // _playerAnimation.SetBool("InCombat", true);
+        animator.SetTrigger("Hit");
+        isHit = true;
+        // animator.SetBool("InCombat", true);
         if (Health < 1)
         {
-            // Destroy(gameObject, 1.0f);
+            Destroy(gameObject, 1.0f);
         }
     }
 }
