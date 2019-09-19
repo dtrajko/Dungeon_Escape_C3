@@ -76,7 +76,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             direction = player.transform.position - transform.position;
         }
 
-        if (animator.GetBool("InCombat"))
+        if (animator.GetBool("InCombat") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
             if (direction.x > 0)
             {
@@ -93,15 +93,17 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         Health--;
         // Debug.Log(GetType().Name + " damaged. Health: " + Health);
 
-        if (Health < 1)
+        if (Health > 0)
+        {
+            animator.SetTrigger("Hit");
+            isHit = true;
+            animator.SetBool("InCombat", true);
+        }
+
+        if (Health <= 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
             animator.SetTrigger("Death");
             Destroy(gameObject, 5.0f);
-            return;
         }
-
-        animator.SetTrigger("Hit");
-        isHit = true;
-        animator.SetBool("InCombat", true);
     }
 }

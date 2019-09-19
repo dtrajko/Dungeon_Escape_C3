@@ -7,6 +7,7 @@ public class Skeleton : Enemy, IDamageable
     public override void Init()
     {
         base.Init();
+        Health = base.Health;
     }
 
     public override void Movement()

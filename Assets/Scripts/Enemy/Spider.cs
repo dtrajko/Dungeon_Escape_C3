@@ -12,6 +12,7 @@ public class Spider : Enemy, IDamageable
     public override void Init()
     {
         base.Init();
+        Health = base.Health;
         attackCooldownTimer = attackCooldown;
     }
 
