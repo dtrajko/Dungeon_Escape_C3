@@ -19,11 +19,18 @@ public class Player : MonoBehaviour, IDamageable
     private SpriteRenderer _swordArcSpriteRenderer;
     private float _swordArcPositionX;
     private float _swordArcRotationX;
+    private int diamonds = 0;
 
     protected Animator animator;
     protected bool isHit = false;
 
+
     public int Health { get => health; set => health = value; }
+    public int Diamonds { get => diamonds; set {
+            diamonds = value;
+            Debug.Log("Player Diamonds: " + diamonds);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
