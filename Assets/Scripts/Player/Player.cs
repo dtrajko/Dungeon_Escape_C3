@@ -121,15 +121,17 @@ public class Player : MonoBehaviour, IDamageable
     public void Damage()
     {
         Health--;
+        // Debug.Log("Player Damage() called. Health: " + Health);
 
-        Debug.Log("Player Damage() called. Health: " + Health);
-
-        animator.SetTrigger("Hit");
-        isHit = true;
         // animator.SetBool("InCombat", true);
         if (Health < 1)
         {
-            Destroy(gameObject, 1.0f);
+            animator.SetTrigger("Death");
+            Destroy(gameObject, 5.0f);
+            return;
         }
+
+        animator.SetTrigger("Hit");
+        isHit = true;
     }
 }

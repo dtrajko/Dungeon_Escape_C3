@@ -36,7 +36,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     public virtual void Movement() {
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && animator.GetBool("InCombat") == false)
+        if ((animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || animator.GetCurrentAnimatorStateInfo(0).IsName("Death")) &&
+            animator.GetBool("InCombat") == false)
         {
             return;
         }
@@ -60,14 +61,20 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
         }
 
-        float distance = Vector3.Distance(transform.position, player.transform.position);
+        float distance = 1000.0f;
+        if (player != null) {
+            distance = Vector3.Distance(transform.position, player.transform.position);
+        }
 
         if (distance > 2.0f) {
             isHit = false;
             animator.SetBool("InCombat", false);
         }
 
-        Vector3 direction = player.transform.position - transform.position;
+        Vector3 direction = new Vector3();
+        if (player != null) {
+            direction = player.transform.position - transform.position;
+        }
 
         if (animator.GetBool("InCombat"))
         {
@@ -84,17 +91,17 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     public void Damage()
     {
         Health--;
-
-        Debug.Log(GetType().Name + " damaged. Health: " + Health);
-
-        animator.SetTrigger("Hit");
-        isHit = true;
-        animator.SetBool("InCombat", true);
+        // Debug.Log(GetType().Name + " damaged. Health: " + Health);
 
         if (Health < 1)
         {
             animator.SetTrigger("Death");
             Destroy(gameObject, 5.0f);
+            return;
         }
+
+        animator.SetTrigger("Hit");
+        isHit = true;
+        animator.SetBool("InCombat", true);
     }
 }
