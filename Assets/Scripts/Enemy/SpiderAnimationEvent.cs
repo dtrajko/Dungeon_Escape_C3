@@ -11,7 +11,7 @@ public class SpiderAnimationEvent : MonoBehaviour
     }
 
     public void Fire() {
-        Debug.Log("Spider should Fire!");
+        // Debug.Log("Spider should Fire!");
         _spider.Attack();
     }
 }
