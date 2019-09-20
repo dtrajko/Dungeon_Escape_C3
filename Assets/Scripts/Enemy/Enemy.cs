@@ -16,6 +16,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected bool bSwitch;
     protected bool isHit = false;
     protected Player player;
+    protected bool isDead = false;
 
     public int Health { get => health; set => health = value; }
 
@@ -91,6 +92,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     public void Damage()
     {
+        if (isDead) return;
+
         Health--;
         // Debug.Log(GetType().Name + " damaged. Health: " + Health);
 
@@ -103,6 +106,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
         if (Health <= 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
+            isDead = true;
             animator.SetTrigger("Death");
             Destroy(gameObject, 5.0f);
             GameObject diamond = Instantiate(diamondPrefab, transform.position, Quaternion.identity);
