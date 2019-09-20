@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Spider : Enemy, IDamageable
 {
-    [SerializeField] float attackCooldown = 6.0f;
+    [SerializeField] private GameObject acidEffectPrefab;
+    [SerializeField] private float attackCooldown = 6.0f;
 
-    public GameObject acidEffectPrefab;
     private float attackCooldownTimer;
 
     public override void Init()

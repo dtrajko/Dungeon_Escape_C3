@@ -8,6 +8,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected float speed;
     [SerializeField] protected int gems;
     [SerializeField] protected Transform pointA, pointB;
+    [SerializeField] protected GameObject diamondPrefab;
 
     protected Vector3 currentTarget;
     protected Animator animator;
@@ -104,6 +105,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         {
             animator.SetTrigger("Death");
             Destroy(gameObject, 5.0f);
+            GameObject diamond = Instantiate(diamondPrefab, transform.position, Quaternion.identity);
+            diamond.GetComponent<Diamond>().Gems = gems;
         }
     }
 }
