@@ -5,7 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    // Get reference to Rigidbody
+    [SerializeField] private int diamonds = 0;
     [SerializeField] private float _jumpForce = 6.5f;
     [SerializeField] private bool _grounded = false;
     [SerializeField] private LayerMask _groundLayer;
@@ -19,7 +19,6 @@ public class Player : MonoBehaviour, IDamageable
     private SpriteRenderer _swordArcSpriteRenderer;
     private float _swordArcPositionX;
     private float _swordArcRotationX;
-    private int diamonds = 0;
 
     protected Animator animator;
     protected bool isHit = false;
