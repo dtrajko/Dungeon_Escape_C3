@@ -7,11 +7,15 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject shopPanel;
 
     private void Start() {
-        shopPanel.SetActive(false);
+        // shopPanel.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
+            Player player = other.GetComponent<Player>();
+            if (player != null) {
+                UIManager.Instance.OpenShop(player.Diamonds);
+            }
             shopPanel.SetActive(true);
         }
     }
@@ -22,5 +26,9 @@ public class Shop : MonoBehaviour
         {
             shopPanel.SetActive(false);
         }
+    }
+
+    public void SelectItem() {
+        Debug.Log("Select Item");
     }
 }
