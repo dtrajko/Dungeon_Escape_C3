@@ -7,13 +7,12 @@ public class UIManager : MonoBehaviour
 {
     public Text playerGemCountText;
     public Image selectionImage;
-    private float selectionImageLocalPositionY;
+    public int selectionImageOffsetY = 104;
 
     private static UIManager _instance;
 
     private void Awake() {
         _instance = this;
-        selectionImageLocalPositionY = selectionImage.transform.localPosition.y;
     }
 
     public static UIManager Instance {
@@ -31,28 +30,19 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdateShopSelection(int index) {
-        float selImageLocalPosY = selectionImageLocalPositionY;
         float selImageAnchorPosY = 0;
         switch (index)
         {
             case 0:
-                selImageLocalPosY = selectionImageLocalPositionY + 104;
-                selImageAnchorPosY = +104;
+                selImageAnchorPosY = selectionImageOffsetY;
                 break;
             case 1:
-                selImageLocalPosY = selectionImageLocalPositionY;
                 selImageAnchorPosY = 0;
                 break;
             case 2:
-                selImageLocalPosY = selectionImageLocalPositionY - 104;
-                selImageAnchorPosY = -104;
+                selImageAnchorPosY = -selectionImageOffsetY;
                 break;
         }
-        // selectionImage.transform.localPosition = new Vector3(
-        //     selectionImage.transform.localPosition.x,
-        //     selImageLocalPosY,
-        //     selectionImage.transform.localPosition.z
-        // );
         selectionImage.rectTransform.anchoredPosition = new Vector2(
             selectionImage.rectTransform.anchoredPosition.x,
             selImageAnchorPosY
