@@ -7,7 +7,7 @@ public class PlayerAnimation : MonoBehaviour
 {
     // Handle to Animator
     private Animator _animator;
-    private Animator _swordAnimation;
+    // private Animator _swordAnimation;
 
 
     // Start is called before the first frame update
@@ -15,7 +15,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         // Assign Handle to Animator
         _animator = GetComponentInChildren<Animator>();
-        _swordAnimation = transform.GetChild(1).GetComponent<Animator>();
+        // _swordAnimation = transform.GetChild(1).GetComponent<Animator>();
     }
 
     public void Move(float move) {
@@ -29,7 +29,7 @@ public class PlayerAnimation : MonoBehaviour
     public void Attack()
     {
         _animator.SetTrigger("Attack");
-        _swordAnimation.SetTrigger("SwordAnimation");
+        // _swordAnimation.SetTrigger("SwordAnimation");
     }
 
     public void Death() {

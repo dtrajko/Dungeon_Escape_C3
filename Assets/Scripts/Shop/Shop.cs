@@ -28,7 +28,20 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void SelectItem() {
-        Debug.Log("Select Item");
+    public void SelectItem(int index) {
+        string itemName = "";
+        switch (index) {
+            case 0:
+                itemName = "Flame Sword";
+                break;
+            case 1:
+                itemName = "Boots of Flight";
+                break;
+            case 2:
+                itemName = "Key to Castle";
+                break;
+        }
+        // Debug.Log("Selected Item: " + "[" + index + "] " + itemName);
+        UIManager.Instance.UpdateShopSelection(index);
     }
 }
