@@ -59,6 +59,10 @@ public class Shop : MonoBehaviour
 
     public void BuyItem()
     {
+        if (currentSelectedItem == 2) {
+            GameManager.Instance.HasKeyToCastle = true;
+        }
+
         if (_player.Diamonds >= currentItemCost)
         {
             // Award item
