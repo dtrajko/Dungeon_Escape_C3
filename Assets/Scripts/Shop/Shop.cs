@@ -68,6 +68,7 @@ public class Shop : MonoBehaviour
             Debug.Log("Remaining gems: " + _player.Diamonds);
             // UIManager.Instance.OpenShop(_player.Diamonds);
             UIManager.Instance.panelShop.SetActive(false);
+            UIManager.Instance.UpdateGemCount(_player.Diamonds);
         }
         else
         {

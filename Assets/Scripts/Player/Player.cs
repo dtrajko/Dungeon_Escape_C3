@@ -58,7 +58,7 @@ public class Player : MonoBehaviour, IDamageable
 
     void Movement() {
         // Horizontal input for left / right
-        float move = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+        float move = CrossPlatformInputManager.GetAxis("Horizontal");
 
         Flip(move);
 
