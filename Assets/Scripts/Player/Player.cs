@@ -10,7 +10,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private bool _grounded = false;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _speed = 2.5f;
-    [SerializeField] protected int health = 100;
+    [SerializeField] protected int health = 8;
 
     private Rigidbody2D _rigid;
     private bool _resetJump = false;
@@ -19,6 +19,7 @@ public class Player : MonoBehaviour, IDamageable
     private SpriteRenderer _swordArcSpriteRenderer;
     private float _swordArcPositionX;
     private float _swordArcRotationX;
+    private int healthInitial;
 
     protected Animator animator;
     protected bool isHit = false;
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour, IDamageable
         _swordArcSpriteRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
         _swordArcPositionX = _swordArcSpriteRenderer.transform.localPosition.x;
         _swordArcRotationX = _swordArcSpriteRenderer.transform.localRotation.eulerAngles.x;
+        healthInitial = health;
     }
 
     // Update is called once per frame
@@ -127,18 +129,20 @@ public class Player : MonoBehaviour, IDamageable
     public void Damage()
     {
         Health--;
-        // Debug.Log("Player Damage() called. Health: " + Health);
+
+        float healthToLivesRatio = (float)UIManager.Instance.healthBars.Length / (float)healthInitial;
+        int livesRemaining = Mathf.CeilToInt(Health * healthToLivesRatio);
+        UIManager.Instance.UpdateLives(livesRemaining);
 
         if (Health > 0)
         {
-            animator.SetTrigger("Hit");
+            _playerAnimation.Hit();
             isHit = true;
         }
 
-        // animator.SetBool("InCombat", true);
         if (Health <= 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
-            animator.SetTrigger("Death");
+            _playerAnimation.Death();
             Destroy(gameObject, 5.0f);
         }
     }

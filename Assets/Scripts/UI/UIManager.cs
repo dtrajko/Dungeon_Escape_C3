@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public Image selectionImage;
     public int selectionImageOffsetY = 104;
     public Text gemCountText;
+    public Image[] healthBars;
 
     private void Awake() {
         _instance = this;
@@ -58,5 +59,12 @@ public class UIManager : MonoBehaviour
     public void UpdateGemCount(int count)
     {
         gemCountText.text = "" + count;
+    }
+
+    public void UpdateLives(int livesRemaining)
+    {
+        for (int i = 0; i < healthBars.Length; i++) {
+            healthBars[i].enabled = i < livesRemaining;
+        }
     }
 }
