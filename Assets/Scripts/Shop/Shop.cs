@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] private GameObject shopPanel;
-
     public int currentSelectedItem;
     public int currentItemCost;
     public string currentSelectedItemName;
@@ -13,7 +11,6 @@ public class Shop : MonoBehaviour
     private Player _player;
 
     private void Start() {
-        shopPanel.SetActive(false);
         _player = FindObjectOfType<Player>();
     }
 
@@ -23,7 +20,7 @@ public class Shop : MonoBehaviour
             if (_player != null) {
                 UIManager.Instance.OpenShop(_player.Diamonds);
             }
-            shopPanel.SetActive(true);
+            UIManager.Instance.panelShop.SetActive(true);
         }
     }
 
@@ -31,7 +28,7 @@ public class Shop : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            shopPanel.SetActive(false);
+            UIManager.Instance.panelShop.SetActive(false);
         }
     }
 
@@ -70,12 +67,12 @@ public class Shop : MonoBehaviour
             Debug.Log("Purchased Item: " + " [" + currentSelectedItem + "] " + currentSelectedItemName);
             Debug.Log("Remaining gems: " + _player.Diamonds);
             // UIManager.Instance.OpenShop(_player.Diamonds);
-            shopPanel.SetActive(false);
+            UIManager.Instance.panelShop.SetActive(false);
         }
         else
         {
             Debug.Log("You do not have enough gems. Closing shop.");
-            shopPanel.SetActive(false);
+            UIManager.Instance.panelShop.SetActive(false);
         }
     }
 }

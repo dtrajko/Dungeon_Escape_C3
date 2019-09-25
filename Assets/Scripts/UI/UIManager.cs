@@ -5,14 +5,20 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    private static UIManager _instance;
+
+    [SerializeField] public GameObject panelShop;
+    [SerializeField] public GameObject panelHUD;
+
     public Text playerGemCountText;
     public Image selectionImage;
     public int selectionImageOffsetY = 104;
-
-    private static UIManager _instance;
+    public Text gemCountText;
 
     private void Awake() {
         _instance = this;
+        panelHUD.SetActive(true);
+        panelShop.SetActive(false);
     }
 
     public static UIManager Instance {
@@ -47,5 +53,10 @@ public class UIManager : MonoBehaviour
             selectionImage.rectTransform.anchoredPosition.x,
             selImageAnchorPosY
         );
+    }
+
+    public void UpdateGemCount(int count)
+    {
+        gemCountText.text = "" + count;
     }
 }

@@ -142,4 +142,9 @@ public class Player : MonoBehaviour, IDamageable
             Destroy(gameObject, 5.0f);
         }
     }
+
+    public void AddGems(int amount) {
+        diamonds += amount;
+        UIManager.Instance.UpdateGemCount(diamonds);
+    }
 }
