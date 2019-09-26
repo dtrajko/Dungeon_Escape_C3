@@ -3,12 +3,14 @@
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
+    private Player _player;
 
     public bool hasKeyToCastle = false;
 
     private void Awake()
     {
         _instance = this;
+        _player = FindObjectOfType<Player>();
     }
 
     public static GameManager Instance
@@ -24,4 +26,6 @@ public class GameManager : MonoBehaviour
     }
 
     public bool HasKeyToCastle { get => hasKeyToCastle; set => hasKeyToCastle = value; }
+
+    public Player Player { get => _player; private set { } }
 }
