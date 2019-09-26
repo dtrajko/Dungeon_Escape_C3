@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,4 +29,9 @@ public class GameManager : MonoBehaviour
     public bool HasKeyToCastle { get => hasKeyToCastle; set => hasKeyToCastle = value; }
 
     public Player Player { get => _player; private set { } }
+
+    public void ExitToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
