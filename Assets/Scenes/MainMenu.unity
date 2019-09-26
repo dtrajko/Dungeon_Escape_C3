@@ -147,7 +147,7 @@ RectTransform:
   m_GameObject: {fileID: 539246107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.05, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1513916722}
   m_RootOrder: 0
@@ -524,7 +524,7 @@ RectTransform:
   m_GameObject: {fileID: 778399573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1513916722}
   m_RootOrder: 2
@@ -690,8 +690,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -500, y: 300}
-  m_SizeDelta: {x: 163, y: 80}
+  m_AnchoredPosition: {x: -500, y: 100}
+  m_SizeDelta: {x: 326, y: 160}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1158143301
 MonoBehaviour:
@@ -735,7 +735,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1158143302}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1513916723}
+        m_MethodName: MenuButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1158143302
@@ -787,6 +798,7 @@ GameObject:
   - component: {fileID: 1513916721}
   - component: {fileID: 1513916720}
   - component: {fileID: 1513916719}
+  - component: {fileID: 1513916723}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -879,6 +891,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1513916723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513916718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b884f7f383cd74ab3e44cfba0f0487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1658297123
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,8 +939,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -200, y: 300}
-  m_SizeDelta: {x: 163, y: 80}
+  m_AnchoredPosition: {x: -100, y: 100}
+  m_SizeDelta: {x: 326, y: 160}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1658297125
 MonoBehaviour:
@@ -960,7 +984,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1658297126}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1513916723}
+        m_MethodName: QuitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1658297126
@@ -1110,8 +1145,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -800, y: 300}
-  m_SizeDelta: {x: 163, y: 80}
+  m_AnchoredPosition: {x: -900, y: 100}
+  m_SizeDelta: {x: 326, y: 160}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &2078541578
 MonoBehaviour:
@@ -1155,7 +1190,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2078541579}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1513916723}
+        m_MethodName: StartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2078541579
