@@ -119,7 +119,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1
+  bundleVersion: 0.2
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -163,8 +163,8 @@ PlayerSettings:
     Android: com.dtrajko.DungeonEscape
     Standalone: com.Company.ProductName
   buildNumber: {}
-  AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 16
+  AndroidBundleVersionCode: 4
+  AndroidMinSdkVersion: 21
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -253,10 +253,10 @@ PlayerSettings:
   clonedFromGUID: 5f34be1353de5cf4398729fda238591b
   templatePackageId: com.unity.template.2d@2.3.2
   templateDefaultScene: Assets/Scenes/SampleScene.unity
-  AndroidTargetArchitectures: 1
+  AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/workspace/Unity/unity_android.keystore
+  AndroidKeystoreName: '{inproject}: build/unity_android.keystore'
   AndroidKeyaliasName: dungeon_escape_alias
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
@@ -620,7 +620,8 @@ PlayerSettings:
     7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
     14: MOBILE_INPUT
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    Android: 0
   il2cppCompilerConfiguration: {}
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
@@ -629,7 +630,8 @@ PlayerSettings:
   scriptingRuntimeVersion: 1
   gcIncremental: 0
   gcWBarrierValidation: 0
-  apiCompatibilityLevelPerPlatform: {}
+  apiCompatibilityLevelPerPlatform:
+    Android: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Template_2D
